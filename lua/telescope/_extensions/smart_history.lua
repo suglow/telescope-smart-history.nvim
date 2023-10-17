@@ -15,7 +15,7 @@ local unescape = function(content)
 end
 
 local M = {
-	db_path = "/home/suglow/dotfiles/lazynv/.lazynv/.local/share/lazynv/telescope_history.sqlite3",
+	db_path = nil,
 	db = nil,
 	data = nil,
 }
@@ -138,7 +138,7 @@ local get_smart_history = function()
 	return histories.new({
 		init = function(obj)
 			obj.db = sqlite.new(obj.path)
-			M.path = obj.path
+			M.db_path = obj.path
 			obj.data = obj.db:tbl("history", {
 				id = true,
 				content = "text",
